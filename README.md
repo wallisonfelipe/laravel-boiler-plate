@@ -60,16 +60,17 @@ http://localhost:8000
 
 Caso queira rodar todos os comandos de uma vez
 ```
-git clone https://github.com/wallisonfelipe/laravel-boiler-plate.git && \
-cd laravel-boiler-plate && cp .env.example .env && \
+sudo git clone https://github.com/wallisonfelipe/laravel-boiler-plate.git && \
+cd laravel-boiler-plate && sudo chmod -R 777 . && git config core.fileMode false && /
+cp .env.example .env && \
 docker compose up -d --build && \
 docker exec -t api php artisan key:generate && \
 sleep 2 && \
 docker exec -t api php artisan migrate --seed && \
 sleep 2 && \
 docker exec -t api php artisan jwt:secret && \
-sudo chmod +x artisan && \
 open "http://localhost:8000"
+
 ```
 
 
