@@ -69,4 +69,10 @@ RUN composer install
 EXPOSE 80
 EXPOSE 8000
 
+RUN chmod -R 777 /var/www/html/storage
+RUN chmod -R 777 /var/www/html/bootstrap/cache
+RUN chmod -R 777 /var/www/html/public
+RUN chmod +x /var/www/html/artisan
+RUN chmod 777 /var/www/html/artisan
+
 CMD [ "composer", "dev"]
