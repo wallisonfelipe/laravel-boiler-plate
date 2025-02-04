@@ -48,7 +48,10 @@ Gere sua chave JWT
 docker exec -t api pphp artisan jwt:secret
 ```
 
-
+Gere sua chave JWT
+```
+sudo chmod +x artisan
+```
 
 Se deu tudo certo, ao abrir o endereço abaixo, sua aplicação deve ser exibida
 ```
@@ -63,6 +66,7 @@ docker compose up -d --build && \
 docker exec -t api php artisan key:generate && \
 docker exec -t api php artisan migrate --seed && \
 docker exec -t api pphp artisan jwt:secret && \
+sudo chmod +x artisan && \
 open "http://localhost:8000"
 ```
 
