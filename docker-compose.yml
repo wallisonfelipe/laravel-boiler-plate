@@ -5,6 +5,7 @@ services:
       context: .
     image: api
     container_name: api
+    restart: always
     ports:
       - 8000:8000
     volumes:
