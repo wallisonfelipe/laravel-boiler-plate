@@ -8,7 +8,7 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - ./:/var/www/html
+      - .:/var/www/html
     environment:
       - COMPOSER_ALLOW_SUPERUSER=1
       - PHP_MEMORY_LIMIT=1G
@@ -16,13 +16,13 @@ services:
       - database
   database:
     image: mysql:8.0
-    container_name: gestaocentral-db
+    container_name: database
     restart: always
     ports:
       - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: gestaocentral
+      MYSQL_DATABASE: laravel
     volumes:
       - database-data:/var/lib/mysql
       - ./database/logs:/var/log/mysql

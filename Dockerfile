@@ -31,9 +31,7 @@ RUN apt-get -y update \
 
 # Install PHP extensions
 RUN docker-php-ext-configure intl \
-    && docker-php-ext-install intl \
-    && pecl install swoole \
-    && docker-php-ext-enable swoole
+    && docker-php-ext-install intl 
 
 RUN apt-get update; \
     apt-get install -y libmagickwand-dev; \
@@ -56,9 +54,6 @@ RUN docker-php-ext-enable gd
 # Install PHP extensions
 RUN docker-php-ext-install pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd sockets zip gd
 
-# Copy Apache configuration
-# COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
-
 WORKDIR /var/www/html
 
 COPY . .
@@ -66,10 +61,12 @@ COPY . .
 # Install composer
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
+RUN git config --global --add safe.directory /var/www/html
+
 RUN composer install
 
 # Expose necessary ports
 EXPOSE 80
 EXPOSE 8000
 
-ENTRYPOINT [ "composer", "dev"]
+CMD [ "composer", "dev"]
